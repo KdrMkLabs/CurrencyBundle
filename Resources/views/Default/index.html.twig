@@ -1,1 +1,7 @@
 Hello {{ name }}!
+
+<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_currency' : app.session.get('_currency') })) }}"> {{ app.session.get('_currency') }} </a>
+
+<br>
+
+{{ '240' | price("USD") }}

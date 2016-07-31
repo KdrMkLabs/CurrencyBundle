@@ -1,0 +1,17 @@
+services:
+  kdr_currency_service:
+    class: Kdrmklabs\Bundle\CurrencyBundle\Services\CurrencyService
+    arguments: ["@service_container", "%kdr_currency.config.default_currency%"]
+  kdr_currency_listener:
+    class: Kdrmklabs\Bundle\CurrencyBundle\Listener\CurrencyListener
+    arguments: ["%kdr_currency.config.default_currency%"]
+    tags:
+      - { name: kernel.event_subscriber }
+  twig.extension.kdr_currency:
+    class: Kdrmklabs\Bundle\CurrencyBundle\Twig\CurrencyExtension
+    tags:
+        - { name: twig.extension }
+    arguments: 
+        - "@kdr_currency_service"
+        - "@service_container"
+        - "%kdr_currency.config.default_currency%"
