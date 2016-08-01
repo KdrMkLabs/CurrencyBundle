@@ -57,4 +57,6 @@ Update your database schema with the command:
 $ php app/console doctrine:schema:update --force
 ```
 
+Populate database:
+
 ![image](https://cloud.githubusercontent.com/assets/5240279/17281571/1c1008ca-5762-11e6-9093-db446fcc9339.png)
