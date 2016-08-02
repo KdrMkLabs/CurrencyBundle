@@ -114,7 +114,7 @@ class Currency
     private $active;
 
     /**
-     * @var type 
+     * @var integer 
      * @GEDMO\Timestampable(on="update")
      * @ORM\Column(name="last_update", type="integer", nullable=true)
      */
@@ -436,19 +436,38 @@ class Currency
         return $this->active;
     }
     
+    /**
+     * 
+     * @return integer
+     */
     public function getLastUpdate() {
         return $this->lastUpdate;
     }
 
-    public function setLastUpdate(type $lastUpdate) {
+    /**
+     * Set active
+     *
+     * @param integer $lastUpdate
+     * @return Currency
+     */
+    public function setLastUpdate($lastUpdate) {
         $this->lastUpdate = $lastUpdate;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getTarget() {
         return $this->target;
     }
 
+    /**
+     * Set active
+     *
+     * @param string $target
+     * @return Currency
+     */
     public function setTarget($target) {
         $this->target = $target;
         return $this;
