@@ -30,7 +30,7 @@ class CurrencyListener implements EventSubscriberInterface {
     public static function getSubscribedEvents() {
         return array(
             // must be registered after the default Locale listener
-            KernelEvents::REQUEST => array(array('onKernelRequest', 15)),
+            KernelEvents::REQUEST => array(array('onKernelRequest', 7)),
         );
     }
     
