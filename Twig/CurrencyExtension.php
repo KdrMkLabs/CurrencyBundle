@@ -47,11 +47,16 @@ class CurrencyExtension extends \Twig_Extension {
     public function getConversionBetween($number, $from_iso_code = null, $to_iso_code = null)
     {
         $session = $this->getServiceContainer()->get('session');
-        $from_iso_code = ( $from_iso_code ) ? $from_iso_code : ( $session->has('_currency') ? $session->get('_currency') : $this->default_currency );
-        $to_iso_code = ( $to_iso_code ) ? $to_iso_code : ( $session->has('_currency') ? $session->get('_currency') : $this->default_currency );
-        
         $currency_service = $this->getCurrencyService();
-        $str_price = $currency_service->converter($number, $from_iso_code, $to_iso_code, true);
+        
+        if($from_iso_code == $to_iso_code) {
+            $from_iso_code = ( $from_iso_code ) ? $from_iso_code : ( $session->has('_currency') ? $session->get('_currency') : $this->default_currency );
+            $str_price = $currency_service->format($number, $from_iso_code);
+        } else {
+            $from_iso_code = ( $from_iso_code ) ? $from_iso_code : ( $session->has('_currency') ? $session->get('_currency') : $this->default_currency );
+            $to_iso_code = ( $to_iso_code ) ? $to_iso_code : ( $session->has('_currency') ? $session->get('_currency') : $this->default_currency );
+            $str_price = $currency_service->converter($number, $from_iso_code, $to_iso_code, true);
+        }
         
         return $str_price;
     }
