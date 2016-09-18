@@ -159,4 +159,21 @@ class CurrencyService {
         
         return $str_price;
     }
+    
+    public function format($number, $to_iso_code){
+        $to_currency = $this->getDoctrineManager()->getRepository('KdrmklabsCurrencyBundle:Currency')
+                            ->findOneBy(array('iso42173code' => $to_iso_code));
+        $str_price = null;
+        
+        if($to_currency instanceof Currency) {
+            $str_price = number_format($number, $to_currency->getDecimals(), $to_currency->getDecPoint(), $to_currency->getThousandsSep());
+            if($to_currency->getSignPrefix()){
+                $str_price = $to_currency->getSign().$str_price;
+            } else if($to_currency->getSignSuffix()){
+                $str_price .= ' '.$to_currency->getSign();
+            }
+        }
+        
+        return $str_price;
+    }
 }
