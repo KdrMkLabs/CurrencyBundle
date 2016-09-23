@@ -128,7 +128,7 @@ class CurrencyService {
         return $combined;
     }
     
-    public function converter($number, $from_iso_code, $to_iso_code, $number_to_str = false){
+    public function converter($number, $from_iso_code, $to_iso_code, $number_to_str = false, $decimals = null){
         $to_currency = $this->getDoctrineManager()->getRepository('KdrmklabsCurrencyBundle:Currency')
                             ->findOneBy(array('iso42173code' => $to_iso_code));
         $str_price = null;
@@ -144,14 +144,14 @@ class CurrencyService {
                 $number = $number * $convertion_rate->getConversionRate();
                 
                 if($number_to_str){
-                    $str_price = number_format($number, $to_currency->getDecimals(), $to_currency->getDecPoint(), $to_currency->getThousandsSep());
+                    $str_price = number_format($number, ($decimals) ? (int)$decimals : $to_currency->getDecimals(), $to_currency->getDecPoint(), $to_currency->getThousandsSep());
                     if($to_currency->getSignPrefix()){
                         $str_price = $to_currency->getSign().$str_price;
                     } else if($to_currency->getSignSuffix()){
                         $str_price .= ' '.$to_currency->getSign();
                     }
                 } else {
-                    $str_price = round($number, $to_currency->getDecimals());
+                    $str_price = round($number, ($decimals) ? (int)$decimals : $to_currency->getDecimals());
                 }
                 
             }
@@ -160,13 +160,13 @@ class CurrencyService {
         return $str_price;
     }
     
-    public function format($number, $to_iso_code){
+    public function format($number, $to_iso_code, $decimals = null){
         $to_currency = $this->getDoctrineManager()->getRepository('KdrmklabsCurrencyBundle:Currency')
                             ->findOneBy(array('iso42173code' => $to_iso_code));
         $str_price = null;
         
         if($to_currency instanceof Currency) {
-            $str_price = number_format($number, $to_currency->getDecimals(), $to_currency->getDecPoint(), $to_currency->getThousandsSep());
+            $str_price = number_format($number, ($decimals) ? (int)$decimals : $to_currency->getDecimals(), $to_currency->getDecPoint(), $to_currency->getThousandsSep());
             if($to_currency->getSignPrefix()){
                 $str_price = $to_currency->getSign().$str_price;
             } else if($to_currency->getSignSuffix()){
