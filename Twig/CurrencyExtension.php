@@ -49,7 +49,7 @@ class CurrencyExtension extends \Twig_Extension {
         $session = $this->getServiceContainer()->get('session');
         $currency_service = $this->getCurrencyService();
         
-        if($from_iso_code == $to_iso_code) {
+        if($from_iso_code === $to_iso_code) {
             $from_iso_code = ( $from_iso_code ) ? $from_iso_code : ( $session->has('_currency') ? $session->get('_currency') : $this->default_currency );
             $str_price = $currency_service->format($number, $from_iso_code, $decimals);
         } else {
