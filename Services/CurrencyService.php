@@ -8,7 +8,9 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\Container;
 
 class CurrencyService { 
-
+    
+    const SERVICE_NAME = 'kdr_currency_service';
+    
     protected $serviceContainer;
     protected $curl_url = "http://query.yahooapis.com/v1/public/yql";
     protected $base_iso_code;
