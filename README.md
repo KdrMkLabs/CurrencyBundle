@@ -11,7 +11,7 @@ file: /composer.json
 
 {
     "require": {
-        "kdrmklabs/ticket-bundle": "dev-master",
+        "kdrmklabs/currency-bundle": "dev-master",
     }
 }
 ```
@@ -19,7 +19,7 @@ file: /composer.json
 Now, update the bundle with composer:
 
 ```
-$ composer update kdrmklabs/ticket-bundle
+$ composer update kdrmklabs/currency-bundle
 ```
 
 ### II. Enable and register the Bundle in the AppKernel
