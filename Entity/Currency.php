@@ -14,8 +14,6 @@ use Gedmo\Mapping\Annotation as GEDMO;
 class Currency
 {
     /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -65,8 +63,6 @@ class Currency
     private $thousandsSep;
 
     /**
-     * @var integer
-     *
      * @ORM\Column(type="integer", options={"default" = 2})
      */
     private $decimals;
@@ -113,8 +109,7 @@ class Currency
      */
     private $active;
 
-    /**
-     * @var integer 
+    /** 
      * @GEDMO\Timestampable(on="update")
      * @ORM\Column(name="last_update", type="integer", nullable=true)
      */
@@ -130,7 +125,7 @@ class Currency
     /**
      * Get id
      *
-     * @return integer 
+     * @return int 
      */
     public function getId()
     {
@@ -278,7 +273,7 @@ class Currency
     /**
      * Set decimals
      *
-     * @param integer $decimals
+     * @param int $decimals
      * @return Currency
      */
     public function setDecimals($decimals)
@@ -291,7 +286,7 @@ class Currency
     /**
      * Get decimals
      *
-     * @return integer 
+     * @return int 
      */
     public function getDecimals()
     {
@@ -438,7 +433,7 @@ class Currency
     
     /**
      * 
-     * @return integer
+     * @return int
      */
     public function getLastUpdate() {
         return $this->lastUpdate;
@@ -447,7 +442,7 @@ class Currency
     /**
      * Set active
      *
-     * @param integer $lastUpdate
+     * @param int $lastUpdate
      * @return Currency
      */
     public function setLastUpdate($lastUpdate) {
